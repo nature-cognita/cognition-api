@@ -1,4 +1,5 @@
 env/
 *.sqlite3
+*.spatialite
 *.pyc
 __pycache__/
