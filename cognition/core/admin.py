@@ -1,3 +1,13 @@
-from django.contrib import admin
+from django.contrib.gis import admin
 
-# Register your models here.
+from .models import Device, Location, Sensor
+
+admin.site.register(Device)
+admin.site.register(Sensor)
+
+
+class LocationAdmin(admin.OSMGeoAdmin):
+    pass
+
+
+admin.site.register(Location, LocationAdmin)
