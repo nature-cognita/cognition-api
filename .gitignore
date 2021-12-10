@@ -3,3 +3,5 @@ env/
 *.spatialite
 *.pyc
 __pycache__/
+
+sim_data.csv

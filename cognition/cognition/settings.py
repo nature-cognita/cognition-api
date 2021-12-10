@@ -16,6 +16,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+MEDIA_ROOT = Path.joinpath(BASE_DIR, "media/")
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -133,3 +135,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Additional Environment Variables
 SIM_ENABLED = os.getenv("COGNITION_SIM_ENABLED", DEBUG)
 SIM_PERIOD = os.getenv("COGNITION_SIM_PERIOD", 10)
+SIM_FILENAME = "sim_data.csv"

@@ -1,4 +1,5 @@
-from django.contrib.gis import admin
+from django.contrib import admin
+from django.contrib.gis import admin as gis_admin
 
 from .models import Device, Location, Sensor, SensorRecord
 
@@ -8,7 +9,7 @@ class UUIDAdmin(admin.ModelAdmin):
 
 
 # Needed for better map preview
-class LocationAdmin(admin.OSMGeoAdmin):
+class LocationAdmin(gis_admin.OSMGeoAdmin):
     readonly_fields = ("id",)
 
 
