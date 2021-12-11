@@ -23,7 +23,9 @@ class Location(UUIDModel):
 
 class Device(UUIDModel):
     label = models.CharField(max_length=120)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    location = models.ForeignKey(
+        Location, related_name="devices", on_delete=models.CASCADE
+    )
 
     def __str__(self) -> str:
         return self.label
@@ -50,7 +52,7 @@ class Sensor(UUIDModel):
 
     usage = models.CharField(max_length=3, choices=USAGE_CHOICES, default=EXTERNAL)
     type = models.CharField(max_length=5, choices=TYPE_CHOICES)
-    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    device = models.ForeignKey(Device, related_name="sensors", on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return f"{self.usage}-{self.type} on {self.device.label}"
@@ -59,8 +61,10 @@ class Sensor(UUIDModel):
 class SensorRecord(models.Model):
     timestamp = models.DateTimeField(primary_key=True)
     value = models.FloatField()
-    sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    sensor = models.ForeignKey(Sensor, related_name="records", on_delete=models.CASCADE)
+    location = models.ForeignKey(
+        Location, related_name="records", on_delete=models.CASCADE
+    )
 
     def save_and_smear_timestamp(self, *args, **kwargs):
         """Recursivly try to save by incrementing the timestamp on duplicate error"""
