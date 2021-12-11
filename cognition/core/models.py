@@ -1,7 +1,9 @@
 import uuid
+from datetime import timedelta
 
 from django.contrib.gis.db import models as gis_models
-from django.db import models
+from django.db import IntegrityError, models
+from django.utils.dateparse import parse_datetime
 
 
 class UUIDModel(models.Model):
@@ -59,6 +61,19 @@ class SensorRecord(models.Model):
     value = models.FloatField()
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
+
+    def save_and_smear_timestamp(self, *args, **kwargs):
+        """Recursivly try to save by incrementing the timestamp on duplicate error"""
+        try:
+            super().save(*args, **kwargs)
+        except IntegrityError as exception:
+            # Only handle the error:
+            #   psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "1_1_farms_sensorreading_pkey"
+            #   DETAIL:  Key ("time")=(2020-10-01 22:33:52.507782+00) already exists.
+            if all(k in exception.args[0] for k in ("Key", "time", "already exists")):
+                # Increment the timestamp by 1 µs and try again
+                self.time = str(parse_datetime(self.time) + timedelta(microseconds=1))
+                self.save_and_smear_timestamp(*args, **kwargs)
 
     def __str__(self) -> str:
         return f"{self.timestamp} {self.sensor}"
