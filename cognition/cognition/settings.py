@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "core",
     "sim",
+    "uploader",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

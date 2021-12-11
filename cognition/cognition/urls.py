@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from sim.views import get_sim_data
+from uploader.views import upload_file
 
 urlpatterns = [
     path("sim/", get_sim_data),
     path("admin/", admin.site.urls),
+    path("upload/", upload_file, name="upload-file"),
 ]
