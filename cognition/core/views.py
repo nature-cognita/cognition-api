@@ -38,14 +38,12 @@ class SensorViewSet(FilteredReadOnlyModelViewSet):
 
 
 class SensorRecordFilter(filters.FilterSet):
+    start_date = IsoDateTimeFilter(field_name="timestamp", lookup_expr="gte")
+    end_date = IsoDateTimeFilter(field_name="timestamp", lookup_expr="lte")
+
     class Meta:
         model = SensorRecord
-        fields = {"timestamp": ("lte", "gte")}
-        # fields = ["sensor", "location"]
-
-    filter_overrides = {
-        models.DateTimeField: {"filter_class": IsoDateTimeFilter},
-    }
+        fields = ["sensor", "location", "start_date", "end_date"]
 
 
 class SensorRecordViewSet(FilteredReadOnlyModelViewSet):
