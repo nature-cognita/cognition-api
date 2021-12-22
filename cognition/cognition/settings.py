@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.gis",
+    "django_filters",
     "rest_framework",
     "rest_framework_gis",
     "django_apscheduler",
@@ -138,3 +139,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 SIM_ENABLED = os.getenv("COGNITION_SIM_ENABLED", DEBUG)
 SIM_PERIOD = os.getenv("COGNITION_SIM_PERIOD", 10)
 SIM_FILENAME = "sim_data.csv"
+
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
+}
