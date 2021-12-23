@@ -4,4 +4,4 @@ env/
 *.pyc
 __pycache__/
 
-sim_data.csv
+*.csv
