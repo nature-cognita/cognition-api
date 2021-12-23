@@ -1,7 +1,7 @@
 from datetime import datetime
 from random import random
 
-from core.models import Sensor
+from api.models import Sensor
 from django.conf import settings
 from django.core.files.storage import default_storage
 
