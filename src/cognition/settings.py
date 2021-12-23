@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "api",
     "sim",
     "uploader",
+    "theme",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_gis",
     "django_apscheduler",
+    "tailwind",
 ]
 
 MIDDLEWARE = [
@@ -135,11 +137,17 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
+}
+
+TAILWIND_APP_NAME = "theme"
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
 # Additional Environment Variables
 SIM_ENABLED = os.getenv("COGNITION_SIM_ENABLED", DEBUG)
 SIM_PERIOD = os.getenv("COGNITION_SIM_PERIOD", 10)
 SIM_FILENAME = "sim_data.csv"
-
-REST_FRAMEWORK = {
-    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
-}

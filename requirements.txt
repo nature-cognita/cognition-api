@@ -10,5 +10,6 @@ sqlparse==0.4.2
 zipp==3.6.0
 django-apscheduler==0.6.0
 djangorestframework-gis
+django-tailwind==3.0.1
 black
 flake8
