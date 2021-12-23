@@ -90,7 +90,7 @@ class Migration(migrations.Migration):
                 (
                     "device",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="core.device"
+                        on_delete=django.db.models.deletion.CASCADE, to="api.device"
                     ),
                 ),
             ],
@@ -106,13 +106,13 @@ class Migration(migrations.Migration):
                 (
                     "location",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="core.location"
+                        on_delete=django.db.models.deletion.CASCADE, to="api.location"
                     ),
                 ),
                 (
                     "sensor",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="core.sensor"
+                        on_delete=django.db.models.deletion.CASCADE, to="api.sensor"
                     ),
                 ),
             ],
@@ -121,7 +121,7 @@ class Migration(migrations.Migration):
             model_name="device",
             name="location",
             field=models.ForeignKey(
-                on_delete=django.db.models.deletion.CASCADE, to="core.location"
+                on_delete=django.db.models.deletion.CASCADE, to="api.location"
             ),
         ),
     ]

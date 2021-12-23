@@ -1,9 +1,4 @@
-from core.views import (
-    DeviceViewSet,
-    LocationViewSet,
-    SensorRecordViewSet,
-    SensorViewSet,
-)
+from api.views import DeviceViewSet, LocationViewSet, SensorRecordViewSet, SensorViewSet
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers

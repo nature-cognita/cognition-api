@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "core",
+    "api",
     "sim",
     "uploader",
     "django.contrib.admin",

@@ -1,7 +1,7 @@
 import csv
 from datetime import datetime
 
-from core.models import Location, Sensor, SensorRecord
+from api.models import Location, Sensor, SensorRecord
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.utils.timezone import make_aware
