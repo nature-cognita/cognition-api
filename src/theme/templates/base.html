@@ -3,16 +3,18 @@
 <html lang="en">
 
 <head>
-	<title>{% block title %}Nature Cognita{% endblock title %}</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	{% tailwind_css %}
+  <title>{% block title %}Nature Cognita{% endblock title %}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% tailwind_css %}
 </head>
 
-<body>
-	{% block body %}
-	{% endblock body %}
+<body class="bg-black">
+  <main class="min-h-screen flex flex-col">
+    {% block body %}
+    {% endblock body %}
+  </main>
 </body>
 
 </html>

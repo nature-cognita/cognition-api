@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "sim",
     "uploader",
     "theme",
+    "map",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

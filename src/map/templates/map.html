@@ -1,0 +1,31 @@
+{% extends "base.html"%}
+{% load widget_tweaks %}
+
+{% block body %}
+<script src='https://unpkg.com/maplibre-gl@2.1.0/dist/maplibre-gl.js'></script>
+<link href='https://unpkg.com/maplibre-gl@2.1.0/dist/maplibre-gl.css' rel='stylesheet' />
+
+<div id='map' style="" class="w-screen h-screen"></div>
+<script>
+  let map = new maplibregl.Map({
+    container: 'map',
+    style: 'https://api.maptiler.com/maps/toner/style.json?key=SkFMlYF6p9Is2aPpffmJ', //TODO: lock on a  domain
+    center: [4.9041, 52.3676], // starting position [lng, lat]
+    zoom: 9 // starting zoom
+  });
+
+  let marker = new maplibregl.Marker();
+  marker.setLngLat([4.9041, 52.3676])
+
+  marker.setPopup(
+    new maplibregl.Popup({
+      offset: 25
+    })
+    .setHTML(
+      "<h3>Test</h3>"
+    )
+  )
+
+  marker.addTo(map)
+</script>
+{% endblock body %}
