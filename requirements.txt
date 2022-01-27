@@ -11,5 +11,6 @@ zipp==3.6.0
 django-apscheduler==0.6.0
 djangorestframework-gis
 django-tailwind==3.0.1
+django-widget-tweaks==1.4.9
 black
 flake8

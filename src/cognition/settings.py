@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_gis",
     "django_apscheduler",
+    "widget_tweaks",
     "tailwind",
 ]
 
