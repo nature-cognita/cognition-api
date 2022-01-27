@@ -27,6 +27,15 @@
               closeButton: false
             }).setHTML(`<h3>${f.properties.label}</h3>`))
           .addTo(map);
+        let markerElement = marker.getElement();
+        markerElement.addEventListener("mouseenter", (e) => {
+          console.log("Enter");
+          //map.getCanvas().style.cursor = "pointer";
+        })
+        markerElement.addEventListener("mouseleave", (e) => {
+          console.log("Leave");
+          //map.getCanvas().style.cursor = "grab";
+        })
       })
     });
 </script>
