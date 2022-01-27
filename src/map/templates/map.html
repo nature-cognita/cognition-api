@@ -14,18 +14,20 @@
     zoom: 9 // starting zoom
   });
 
-  let marker = new maplibregl.Marker();
-  marker.setLngLat([4.9041, 52.3676])
-
-  marker.setPopup(
-    new maplibregl.Popup({
-      offset: 25
-    })
-    .setHTML(
-      "<h3>Test</h3>"
-    )
-  )
-
-  marker.addTo(map)
+  fetch("/api/locations/")
+    .then(responce => responce.json())
+    .then((data) => {
+      console.log(data);
+      data.features.forEach((f) => {
+        let marker = new maplibregl.Marker()
+          .setLngLat(f.geometry.coordinates)
+          .setPopup(
+            new maplibregl.Popup({
+              offset: 25,
+              closeButton: false
+            }).setHTML(`<h3>${f.properties.label}</h3>`))
+          .addTo(map);
+      })
+    });
 </script>
 {% endblock body %}
