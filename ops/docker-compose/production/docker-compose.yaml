@@ -1,0 +1,47 @@
+version: "2"
+
+services:
+  redis:
+    image: docker.io/bitnami/redis:6.2
+    restart: always
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    ports:
+      - 6379
+    volumes:
+      - "/opt/cognition-api/volumes/redis-data:/bitnami/redis/data"
+
+  db:
+    image: postgis/postgis:14-3.2
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432
+    volumes:
+      - "/opt/cognition-api/volumes/pg-data:/var/lib/postgresql/data"
+
+  cognition-api-app:
+    image: ghcr.io/nature-cognita/cognition-api:latest
+    restart: always
+    pull_policy: always
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=redis
+      - DB_HOST=db
+    volumes:
+      - "/opt/cognition-api/volumes/media:/app/media"
+
+  # one-model-celery:
+  #   image: ghcr.io/ephemera-one/one-model:latest
+  #   restart: always
+  #   pull_policy: always
+  #   environment:
+  #     - REDIS_HOST=redis
+  #     - DB_HOST=db
+  #   volumes:
+  #     - "/opt/one-model/volumes/media:/app/media"
+  #   command: "celery -A one_model worker"

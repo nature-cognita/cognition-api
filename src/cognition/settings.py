@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "uploader",
     "theme",
     "map",
+    "nft",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -153,3 +154,10 @@ INTERNAL_IPS = [
 SIM_ENABLED = os.getenv("COGNITION_SIM_ENABLED", DEBUG)
 SIM_PERIOD = os.getenv("COGNITION_SIM_PERIOD", 10)
 SIM_FILENAME = "sim_data.csv"
+
+ONE_MODEL_URL = os.getenv("ONE_MODEL_URL", "http://localhost:8001/api/tasks/")
+ONE_MODEL_PROJECT_ID = os.getenv(
+    "ONE_MODEL_PROJECT_ID", "90a33172-a67e-4b8a-99be-9233ed31618d"
+)
+
+CALLBACK_URL = os.getenv("CALLBACK_URL", "http://localhost:8000/api/nfts/")
