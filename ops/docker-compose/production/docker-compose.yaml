@@ -28,20 +28,13 @@ services:
     restart: always
     pull_policy: always
     ports:
-      - "8000:8000"
+      - "8001:8000"
     environment:
       - REDIS_HOST=redis
       - DB_HOST=db
+      - DEBUG=false
+      - ONE_MODEL_URL=https://onemodel.cognita.dev/api/tasks/
+      - ONE_MODEL_PROJECT_ID=91280868-c3ed-4e4e-8647-f956cdab3394
+      - CALLBACK_URL=https://api.cognita.dev/api/nfts/
     volumes:
       - "/opt/cognition-api/volumes/media:/app/media"
-
-  # one-model-celery:
-  #   image: ghcr.io/ephemera-one/one-model:latest
-  #   restart: always
-  #   pull_policy: always
-  #   environment:
-  #     - REDIS_HOST=redis
-  #     - DB_HOST=db
-  #   volumes:
-  #     - "/opt/one-model/volumes/media:/app/media"
-  #   command: "celery -A one_model worker"

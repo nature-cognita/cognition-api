@@ -3,5 +3,6 @@ env/
 *.spatialite
 *.pyc
 __pycache__/
+static/
 
 *.csv
