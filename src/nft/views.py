@@ -59,5 +59,5 @@ class ImageNFTViewSet(ModelViewSet):
 
 
 def display_nft(request):
-    nfts = ImageNFT.objects.order_by("-created_at")
+    nfts = ImageNFT.objects.filter(status=ImageNFT.GENERATED).order_by("-created_at")
     return render(request, "nft.html", {"nfts": nfts})
