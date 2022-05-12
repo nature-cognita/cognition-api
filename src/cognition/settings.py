@@ -172,7 +172,7 @@ SIM_FILENAME = "sim_data.csv"
 
 ONE_MODEL_URL = os.getenv("ONE_MODEL_URL", "http://localhost:8001/api/tasks/")
 ONE_MODEL_PROJECT_ID = os.getenv(
-    "ONE_MODEL_PROJECT_ID", "90a33172-a67e-4b8a-99be-9233ed31618d"
+    "ONE_MODEL_PROJECT_ID", "3c2674b9-13a9-4d02-ad5b-7ebfe334782d"
 )
 
 CALLBACK_URL = os.getenv("CALLBACK_URL", "http://localhost:8000/api/nfts/")

@@ -13,7 +13,8 @@ RUN pip install -r requirements.txt && rm requirements.txt
 
 COPY ./src /app/
 
-CMD python manage.py collectstatic --noinput; \
+CMD python manage.py tailwind build; \
+    python manage.py collectstatic --noinput; \
     python manage.py migrate; \
     gunicorn --bind=0.0.0.0 --workers=4 --log-file=- --access-logfile=- cognition.wsgi
 

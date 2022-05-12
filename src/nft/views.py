@@ -3,6 +3,7 @@ from urllib.parse import urljoin
 
 import requests
 from django.conf import settings
+from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.response import Response
@@ -55,3 +56,8 @@ class ImageNFTViewSet(ModelViewSet):
                 return Response(status=status.HTTP_503_SERVICE_UNAVAILABLE)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+def display_nft(request):
+    nfts = ImageNFT.objects.order_by("-created_at")
+    return render(request, "nft.html", {"nfts": nfts})

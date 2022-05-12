@@ -1,0 +1,25 @@
+{% extends "base.html"%}
+{% load widget_tweaks %}
+
+{% block body %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+<script type="module">
+  import 'https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js';
+
+  const lightbox = GLightbox();
+</script>
+
+<h1 class="text-gray-100 text-6xl font-thin text-center py-8">
+  Living Cognition
+</h1>
+<div class="text-center py-12">
+  <div class="grid-cols-3 gap-4 inline-grid mx-auto">
+    {% for nft in nfts %}
+    <a href="{{ nft.absolute_url }}" class="glightbox">
+      <img class="object-cover border border-gray-600" src="{{ nft.absolute_url }}" width="500" height="500" />
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock body%}
