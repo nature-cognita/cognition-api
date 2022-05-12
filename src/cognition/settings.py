@@ -29,6 +29,7 @@ SECRET_KEY = "django-insecure-n_vk%*p*#z26*sya6tzz@pl81%a(8*n-0+9$1dd=31-#qb_ntf
 DEBUG = os.getenv("DEBUG", "true").lower() == "true"
 
 ALLOWED_HOSTS = ["api.cognita.dev", "159.69.185.67", "localhost"]
+CSRF_TRUSTED_ORIGINS = ["https://*.cognita.dev", "https://127.0.0.1"]
 
 
 # Application definition
