@@ -31,11 +31,12 @@ class ImageNFTViewSet(ModelViewSet):
             validated_data: Dict = serializer.validated_data
 
             nft_data = validated_data["data"]
+            nft_user = validated_data["user"]
 
             project_id = settings.ONE_MODEL_PROJECT_ID
             url = settings.ONE_MODEL_URL
 
-            nft = ImageNFT.objects.create(data=nft_data)
+            nft = ImageNFT.objects.create(data=nft_data, user=nft_user)
             nft.save()
 
             r = requests.post(
@@ -68,7 +69,10 @@ class ImageNFTViewSet(ModelViewSet):
 
         minter_url = settings.MINTER_URL
 
-        res = requests.post(minter_url, {"imageURL": instance.image_url})
+        # Minting
+        res = requests.post(
+            minter_url, {"imageURL": instance.image_url, "user": instance.user}
+        )
 
         print(res.json())
 
