@@ -8,6 +8,7 @@ class ImageNFT(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     data = models.TextField()
     image_url = models.CharField(max_length=300, default="")
+    user = models.CharField(max_length=300, default="None")
 
     @property
     def absolute_url(self):

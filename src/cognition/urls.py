@@ -1,8 +1,10 @@
-from api.views import DeviceViewSet, LocationViewSet, SensorRecordViewSet, SensorViewSet
+from api.views import (DeviceViewSet, LocationViewSet, SensorRecordViewSet,
+                       SensorViewSet)
 from django.contrib import admin
 from django.urls import include, path
 from map.views import display_map
 from nft.views import ImageNFTViewSet, display_nft
+from nft_generator.views import generate_nft, generator_success
 from rest_framework import routers
 from sim.views import get_sim_data
 from uploader.views import upload_file
@@ -21,4 +23,6 @@ urlpatterns = [
     path("upload/", upload_file, name="upload-file"),
     path("map/", display_map),
     path("nft/", display_nft),
+    path("generator/", generate_nft, name="generator"),
+    path("generator-success/", generator_success, name="generator-success"),
 ]

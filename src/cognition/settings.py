@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+import environ
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     "theme",
     "map",
     "nft",
+    "nft_generator",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -172,9 +175,20 @@ SIM_FILENAME = "sim_data.csv"
 
 ONE_MODEL_URL = os.getenv("ONE_MODEL_URL", "http://localhost:8001/api/tasks/")
 ONE_MODEL_PROJECT_ID = os.getenv(
-    "ONE_MODEL_PROJECT_ID", "3c2674b9-13a9-4d02-ad5b-7ebfe334782d"
+    "ONE_MODEL_PROJECT_ID", "b64ae7fa-4a02-4e83-81cc-8ab9237a7946"
 )
 
 CALLBACK_URL = os.getenv("CALLBACK_URL", "http://localhost:8000/api/nfts/")
 
 MINTER_URL = os.getenv("MINTER_URL", "http://localhost:3000/")
+
+NFT_GENERATOR_SENSOR_NAME = os.getenv("NFT_GENERATOR_SENSOR", "BT003164")
+
+HOST_URL = os.getenv("HOST_URL", "http://localhost:8000/")
+
+env = environ.Env()
+
+if DEBUG:
+    environ.Env.read_env(os.path.join(BASE_DIR, ".env.dev"))
+
+NFT_GENERATOR_API_KEY = env("NFT_GENERATOR_API_KEY")
