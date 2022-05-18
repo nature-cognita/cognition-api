@@ -22,6 +22,12 @@ services:
     volumes:
       - "pg_data:/var/lib/postgresql/data"
 
+  minter:
+    image: ghcr.io/nature-cognita/living-nft:latest
+    pull_policy: always
+    ports:
+      - "3000:3000"
+
 volumes:
   redis_data:
     driver: local

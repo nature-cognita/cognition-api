@@ -176,3 +176,5 @@ ONE_MODEL_PROJECT_ID = os.getenv(
 )
 
 CALLBACK_URL = os.getenv("CALLBACK_URL", "http://localhost:8000/api/nfts/")
+
+MINTER_URL = os.getenv("MINTER_URL", "http://localhost:3000/")

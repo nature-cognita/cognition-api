@@ -57,6 +57,23 @@ class ImageNFTViewSet(ModelViewSet):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def partial_update(self, request, *args, **kwargs):
+        partial = True
+        instance = self.get_object()
+
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+
+        self.perform_update(serializer)
+
+        minter_url = settings.MINTER_URL
+
+        res = requests.post(minter_url, {"imageURL": instance.image_url})
+
+        print(res.json())
+
+        return Response(serializer.data)
+
 
 def display_nft(request):
     nfts = ImageNFT.objects.filter(status=ImageNFT.GENERATED).order_by("-created_at")
