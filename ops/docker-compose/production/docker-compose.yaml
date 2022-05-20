@@ -31,11 +31,12 @@ services:
       - "8001:8000"
     environment:
       - REDIS_HOST=redis
-      - HOST_URL="https://api.cognita.dev/"
+      - HOST_URL=https://api.cognita.dev/
+      - MINTER_URL=http://minter:3000/
       - DB_HOST=db
       - DEBUG=false
       - ONE_MODEL_URL=https://onemodel.cognita.dev/api/tasks/
-      - ONE_MODEL_PROJECT_ID=91280868-c3ed-4e4e-8647-f956cdab3394
+      - ONE_MODEL_PROJECT_ID=dde94bf4-992a-402e-bb5e-4161a0bf16af
       - CALLBACK_URL=https://api.cognita.dev/api/nfts/
       - NFT_GENERATOR_API_KEY={SET!}
     volumes:
@@ -43,6 +44,7 @@ services:
 
   minter:
     image: ghcr.io/nature-cognita/living-nft:latest
+    restart: always
     pull_policy: always
     ports:
       - "127.0.0.1:3000:3000"
