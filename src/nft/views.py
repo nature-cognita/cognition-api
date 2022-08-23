@@ -67,14 +67,15 @@ class ImageNFTViewSet(ModelViewSet):
 
         self.perform_update(serializer)
 
-        minter_url = settings.MINTER_URL
+        if settings.MINT:
+            minter_url = settings.MINTER_URL
 
-        # Minting
-        res = requests.post(
-            minter_url, {"imageURL": instance.image_url, "user": instance.user}
-        )
+            # Minting
+            res = requests.post(
+                minter_url, {"imageURL": instance.image_url, "user": instance.user}
+            )
 
-        print(res.json())
+            print(res.json())
 
         return Response(serializer.data)
 

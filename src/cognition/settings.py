@@ -181,6 +181,7 @@ ONE_MODEL_PROJECT_ID = os.getenv(
 CALLBACK_URL = os.getenv("CALLBACK_URL", "http://localhost:8000/api/nfts/")
 
 MINTER_URL = os.getenv("MINTER_URL", "http://localhost:3000/")
+MINT = os.getenv("MINT", False)
 
 NFT_GENERATOR_SENSOR_NAME = os.getenv("NFT_GENERATOR_SENSOR", "BT003164")
 

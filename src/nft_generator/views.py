@@ -32,6 +32,7 @@ def generate_nft(request):
                 f"https://www.irrimaxlive.com/api/?cmd=getreadings&key={api_key}&name={sensor_name}&from={from_date}"
             )
 
+            print("External API Data")
             print(res.text)
 
             df = pd.read_csv(StringIO(res.text))
@@ -39,13 +40,18 @@ def generate_nft(request):
             df.drop("Date Time", inplace=True, axis=1)  # Removing date column
             df.drop(df[df["A1(5)"] < 0].index, inplace=True)  # Removing -1 rows
 
+            last_row = df.iloc[-1:]
+
             # df.to_csv("test.csv", index=False)
 
             host_url = settings.HOST_URL
 
             url = urljoin(host_url, "/api/nfts/")
             user = form.cleaned_data.get("user")
-            data = df.to_string(index=False)
+            data = last_row.to_csv(index=False)
+
+            print("Cleanup for generation")
+            print(data)
 
             res = requests.post(url, {"data": data, "user": user})
 
